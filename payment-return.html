@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Payment Confirmation - Holy Rosary</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f8fc;
+      color: #172033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+    }
+
+    .loader {
+      width: 58px;
+      height: 58px;
+      border: 5px solid #e5eaf2;
+      border-top-color: #1557a6;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 24px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .check {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #e9f8ef;
+      color: #16834a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 20px;
+      font-weight: bold;
+    }
+
+    .error-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #fff0f0;
+      color: #c62828;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin: 0 auto 20px;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 25px;
+    }
+
+    p {
+      margin: 8px 0;
+      color: #657083;
+      line-height: 1.6;
+    }
+
+    .details {
+      margin-top: 25px;
+      text-align: left;
+      border-top: 1px solid #e8edf4;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 0;
+      border-bottom: 1px solid #edf1f6;
+    }
+
+    .label {
+      color: #697586;
+    }
+
+    .value {
+      font-weight: 600;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 13px 22px;
+      border-radius: 10px;
+      background: #1557a6;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .debug {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #8993a3;
+      word-break: break-word;
+    }
+
+    @media (max-width: 480px) {
+      .box {
+        padding: 32px 20px;
+      }
+
+      .row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .value {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <!-- LOADING -->
+    <div id="loadingSection">
+      <div class="loader"></div>
+
+      <h1>Confirming your payment</h1>
+
+      <p id="loadingText">
+        Please wait while we confirm your payment.
+      </p>
+
+      <div class="debug" id="debugText"></div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="successSection" class="hidden">
+
+      <div class="check">✓</div>
+
+      <h1>Payment Successful</h1>
+
+      <p>
+        Your payment has been confirmed successfully.
+      </p>
+
+      <div class="details">
+
+        <div class="row">
+          <span class="label">Payment</span>
+          <span class="value" id="paymentPurpose">-</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Amount</span>
+          <span class="value" id="paymentAmount">-</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Receipt No.</span>
+          <span class="value" id="receiptNumber">-</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Transaction Ref.</span>
+          <span class="value" id="transactionReference">-</span>
+        </div>
+
+        <div class="row">
+          <span class="label">Status</span>
+          <span class="value">Successful</span>
+        </div>
+
+      </div>
+
+      <a href="student-payments.html" class="button">
+        Return to Payments
+      </a>
+
+    </div>
+
+    <!-- ERROR -->
+    <div id="errorSection" class="hidden">
+
+      <div class="error-icon">!</div>
+
+      <h1>Payment Confirmation Issue</h1>
+
+      <p id="errorText">
+        We could not confirm your payment yet.
+      </p>
+
+      <a href="student-payments.html" class="button">
+        Return to Payments
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    (function () {
+
+      "use strict";
+
+      console.log("PAYMENT RETURN: JavaScript started");
+
+      var supabaseClient = window.hrSupabase || null;
+
+      var params = new URLSearchParams(window.location.search);
+
+      var txRef = params.get("tx_ref");
+      var transactionId = params.get("transaction_id");
+      var paymentId = params.get("payment_id");
+      var flutterwaveStatus = params.get("status");
+
+      console.log("PAYMENT RETURN: tx_ref =", txRef);
+      console.log("PAYMENT RETURN: transaction_id =", transactionId);
+      console.log("PAYMENT RETURN: payment_id =", paymentId);
+      console.log("PAYMENT RETURN: Flutterwave status =", flutterwaveStatus);
+
+      var loadingSection = document.getElementById("loadingSection");
+      var successSection = document.getElementById("successSection");
+      var errorSection = document.getElementById("errorSection");
+
+      var loadingText = document.getElementById("loadingText");
+      var debugText = document.getElementById("debugText");
+      var errorText = document.getElementById("errorText");
+
+      var paymentPurpose = document.getElementById("paymentPurpose");
+      var paymentAmount = document.getElementById("paymentAmount");
+      var receiptNumber = document.getElementById("receiptNumber");
+      var transactionReference = document.getElementById("transactionReference");
+
+      function showSuccess(payment) {
+
+        console.log("PAYMENT RETURN: SUCCESS", payment);
+
+        loadingSection.classList.add("hidden");
+        errorSection.classList.add("hidden");
+        successSection.classList.remove("hidden");
+
+        paymentPurpose.textContent = payment.purpose || "Payment";
+
+        if (payment.amount !== null && payment.amount !== undefined) {
+          paymentAmount.textContent =
+            String(payment.currency || "NGN") +
+            " " +
+            Number(payment.amount).toLocaleString();
+        } else {
+          paymentAmount.textContent = "-";
+        }
+
+        receiptNumber.textContent =
+          payment.receipt_no || "-";
+
+        transactionReference.textContent =
+          payment.tx_ref || txRef || "-";
+      }
+
+      function showError(message) {
+
+        console.error("PAYMENT RETURN ERROR:", message);
+
+        loadingSection.classList.add("hidden");
+        successSection.classList.add("hidden");
+        errorSection.classList.remove("hidden");
+
+        errorText.textContent = message;
+      }
+
+      function checkPaymentRecord() {
+
+        if (!supabaseClient) {
+          console.error("PAYMENT RETURN: Supabase client missing");
+          return Promise.resolve(false);
+        }
+
+        if (!txRef && !paymentId) {
+          return Promise.resolve(false);
+        }
+
+        console.log("PAYMENT RETURN: Checking payment record...");
+
+        var query = supabaseClient
+          .from("payments")
+          .select(
+            "id,tx_ref,status,purpose,amount,currency,receipt_no,flutterwave_transaction_id,paid_at,created_at"
+          );
+
+        if (paymentId) {
+
+          query = query.eq("id", paymentId);
+
+        } else {
+
+          query = query.eq("tx_ref", txRef);
+
+        }
+
+        return query
+          .maybeSingle()
+          .then(function (result) {
+
+            if (result.error) {
+
+              console.error(
+                "PAYMENT RETURN: Payment query error",
+                result.error
+              );
+
+              return false;
+            }
+
+            if (!result.data) {
+
+              console.log(
+                "PAYMENT RETURN: Payment record not found yet"
+              );
+
+              return false;
+            }
+
+            console.log(
+              "PAYMENT RETURN: Payment record:",
+              result.data
+            );
+
+            if (result.data.status === "successful") {
+
+              showSuccess(result.data);
+
+              return true;
+            }
+
+            return false;
+          })
+          .catch(function (error) {
+
+            console.error(
+              "PAYMENT RETURN: Database check failed",
+              error
+            );
+
+            return false;
+          });
+      }
+
+      function verifyWithFunction() {
+
+        if (!supabaseClient) {
+
+          showError(
+            "The Supabase connection could not be initialized."
+          );
+
+          return;
+        }
+
+        if (!txRef) {
+
+          showError(
+            "The payment transaction reference is missing."
+          );
+
+          return;
+        }
+
+        console.log(
+          "PAYMENT RETURN: Calling payment-status..."
+        );
+
+        loadingText.textContent =
+          "Verifying your payment with the payment server...";
+
+        var body = {
+          tx_ref: txRef
+        };
+
+        if (transactionId) {
+          body.transaction_id = transactionId;
+        }
+
+        supabaseClient.functions
+          .invoke("payment-status", {
+            body: body
+          })
+          .then(function (result) {
+
+            console.log(
+              "PAYMENT RETURN: payment-status response:",
+              result
+            );
+
+            if (result.error) {
+
+              console.error(
+                "PAYMENT RETURN: payment-status error:",
+                result.error
+              );
+
+              checkPaymentRecord();
+              return;
+            }
+
+            if (
+              result.data &&
+              result.data.status === "successful" &&
+              result.data.payment
+            ) {
+
+              showSuccess(result.data.payment);
+              return;
+            }
+
+            checkPaymentRecord();
+
+          })
+          .catch(function (error) {
+
+            console.error(
+              "PAYMENT RETURN: payment-status failed:",
+              error
+            );
+
+            checkPaymentRecord();
+
+          });
+      }
+
+      function startPolling() {
+
+        var attempts = 0;
+        var maxAttempts = 15;
+
+        var timer = setInterval(function () {
+
+          attempts++;
+
+          console.log(
+            "PAYMENT RETURN: polling attempt",
+            attempts
+          );
+
+          checkPaymentRecord()
+            .then(function (success) {
+
+              if (success) {
+
+                clearInterval(timer);
+                return;
+              }
+
+              if (attempts >= maxAttempts) {
+
+                clearInterval(timer);
+
+                showError(
+                  "Your payment was received by Flutterwave, but the school system has not finished confirming it yet. Please return to Payments and check your payment status."
+                );
+
+              }
+
+            });
+
+        }, 2000);
+      }
+
+      if (!supabaseClient) {
+
+        showError(
+          "Supabase was not initialized. Please refresh the page."
+        );
+
+        return;
+      }
+
+      debugText.textContent =
+        "Transaction reference: " +
+        (txRef || "not found");
+
+      /*
+       * First check the database.
+       * Then ask the payment-status Edge Function to verify.
+       * Poll the payment row while the webhook/server finishes.
+       */
+
+      checkPaymentRecord()
+        .then(function (alreadySuccessful) {
+
+          if (alreadySuccessful) {
+            return;
+          }
+
+          verifyWithFunction();
+          startPolling();
+
+        });
+
+    })();
+  </script>
+
+</body>
+</html>

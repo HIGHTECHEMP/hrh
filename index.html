@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <meta
+        name="description"
+        content="Holy Rosary Hospital Emekuku — healthcare, professional education, admissions, student services and institutional information."
+    >
+
+    <title>
+        Holy Rosary Hospital & Schools | Emekuku
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/config.js"></script>
+
+    <!-- Dynamic homepage content MUST load before app.js -->
+    <script
+        src="js/public-content.js"
+        defer
+    ></script>
+
+    <script
+        src="js/app.js"
+        defer
+    ></script>
+
+    <script
+        src="js/public-result-checker.js"
+        defer
+    ></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOADER
+     ========================================================= -->
+
+<div
+    class="loader"
+    role="status"
+    aria-live="polite"
+    aria-label="Loading Holy Rosary Digital Platform"
+>
+
+    <div class="loader-mark">
+        ✚
+    </div>
+
+    <div class="loader-brand">
+        HOLY ROSARY
+    </div>
+
+    <small>
+        EMEKUKU · HOSPITAL & SCHOOLS
+    </small>
+
+    <div
+        class="loader-progress"
+        aria-hidden="true"
+    >
+        <span></span>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PUBLIC NAVIGATION
+     ========================================================= -->
+
+<header class="public-header">
+
+    <nav
+        class="nav"
+        aria-label="Main navigation"
+    >
+
+        <a
+            class="logo"
+            href="#home"
+            aria-label="Holy Rosary Hospital Emekuku home"
+        >
+
+            <span>
+                ✚
+            </span>
+
+            <b>
+                HOLY ROSARY
+            </b>
+
+            <small>
+                EMEKUKU · HOSPITAL & SCHOOLS
+            </small>
+
+        </a>
+
+
+        <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-label="Open navigation"
+        >
+            ☰
+        </button>
+
+
+        <div class="nav-links">
+
+            <a href="#hospital">
+                Hospital
+            </a>
+
+            <a href="#schools">
+                Schools
+            </a>
+
+            <a href="#admissions">
+                Admissions
+            </a>
+
+            <a href="#events">
+                Events
+            </a>
+
+            <a href="#news">
+                News
+            </a>
+
+            <a
+                class="nav-pill"
+                href="login.html"
+            >
+                Portal Login
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<main id="home">
+
+
+<!-- =========================================================
+     CURRENT HERO — PRESERVED
+     ========================================================= -->
+
+<section class="hero hero-preserved">
+
+    <div class="heroText reveal hero-copy">
+
+        <label class="hero-kicker text-reveal">
+            HOLY ROSARY HOSPITAL EMEKUKU
+        </label>
+
+
+        <h1
+            class="hero-title"
+            aria-label="Where care meets calling."
+        >
+
+            <span>
+                Where
+            </span>
+
+            <em>
+                care
+            </em>
+
+            <br>
+
+            <span>
+                meets
+            </span>
+
+            <em>
+                calling.
+            </em>
+
+        </h1>
+
+
+        <p class="hero-subtitle text-reveal-delay">
+
+            A modern digital home for healthcare,
+            professional education and the students
+            who will shape tomorrow's care.
+
+        </p>
+
+
+        <div class="actions hero-actions text-reveal-delay-2">
+
+            <a
+                class="btn blue magnetic-btn"
+                href="#schools"
+            >
+                Explore our schools →
+            </a>
+
+
+            <a
+                class="btn"
+                href="#hospital"
+            >
+                About Holy Rosary
+            </a>
+
+        </div>
+
+
+        <small class="hero-note text-reveal-delay-3">
+
+            Since 1932 · Healing communities ·
+            Training professionals
+
+        </small>
+
+    </div>
+
+
+    <div
+        class="heroArt hero-orbit"
+        aria-hidden="true"
+    >
+
+        <div class="hero-glow"></div>
+
+
+        <div class="orb hero-core">
+
+            <span>
+                ✚
+            </span>
+
+        </div>
+
+
+        <div class="float one orbit-card card-a">
+
+            01
+            <br>
+
+            <b>
+                Hospital
+            </b>
+
+            <small>
+                Healthcare services
+            </small>
+
+        </div>
+
+
+        <div class="float two orbit-card card-b">
+
+            02
+            <br>
+
+            <b>
+                Schools
+            </b>
+
+            <small>
+                Professional training
+            </small>
+
+        </div>
+
+
+        <div class="hero-ring ring-one"></div>
+
+        <div class="hero-ring ring-two"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TICKER
+     ========================================================= -->
+
+<div
+    class="ticker"
+    aria-label="Holy Rosary services and schools"
+>
+
+    <span>
+        HOSPITAL
+    </span>
+
+    <span>
+        COLLEGE OF NURSING SCIENCES
+    </span>
+
+    <span>
+        SCHOOL OF MIDWIFERY
+    </span>
+
+    <span>
+        MEDICAL LABORATORY
+    </span>
+
+    <span>
+        SCHOOL OF PHARMACY
+    </span>
+
+    <span>
+        STUDENT SERVICES
+    </span>
+
+</div>
+
+
+<!-- =========================================================
+     ABOUT / HOSPITAL
+     ========================================================= -->
+
+<section
+    id="hospital"
+    class="section split about-section"
+>
+
+    <div class="reveal">
+
+        <span class="eyebrow">
+            HOLY ROSARY HOSPITAL & SCHOOL
+        </span>
+
+
+        <h2 class="animated-heading">
+
+            One connected experience for
+            <em>
+                care, learning and growth.
+            </em>
+
+        </h2>
+
+
+        <p class="lead">
+
+            Holy Rosary Hospital Emekuku brings
+            healthcare, professional education
+            and student services together in one
+            institutional home.
+
+        </p>
+
+
+        <p>
+
+            Our public platform makes it easier
+            for prospective students, current
+            students, staff, families and the
+            wider community to discover the
+            institution, access approved services
+            and stay informed.
+
+        </p>
+
+
+        <div class="mini-stats">
+
+            <div>
+                <strong>
+                    1932
+                </strong>
+
+                <span>
+                    Established
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    Care
+                </strong>
+
+                <span>
+                    Community focus
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    Learn
+                </strong>
+
+                <span>
+                    Professional training
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="feature-grid reveal stagger-grid">
+
+        <article>
+
+            <b>
+                01
+            </b>
+
+            <h3>
+                Healthcare
+            </h3>
+
+            <p>
+                Hospital information, services
+                and a digital front door for the
+                wider community.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                02
+            </b>
+
+            <h3>
+                Academic services
+            </h3>
+
+            <p>
+                Admissions, programmes, results,
+                notices and student services.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                03
+            </b>
+
+            <h3>
+                Protected operations
+            </h3>
+
+            <p>
+                Lecturer, Registry and Admin
+                workflows remain securely behind
+                the portal.
+            </p>
+
+        </article>
+
+
+        <article>
+
+            <b>
+                04
+            </b>
+
+            <h3>
+                Digital payments
+            </h3>
+
+            <p>
+                Approved fees can move through
+                the connected payment workflow.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DIRECTOR'S WELCOME
+     ========================================================= -->
+
+<section class="section welcome-section">
+
+    <div class="welcome-layout reveal">
+
+        <div class="welcome-portrait image-upload-ready">
+
+            <div class="image-placeholder-mark">
+                ✚
+            </div>
+
+            <span>
+                Director's photograph
+            </span>
+
+        </div>
+
+
+        <div class="welcome-copy">
+
+            <span class="eyebrow">
+                A MESSAGE FROM MANAGEMENT
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                Director's
+                <em>
+                    Welcome.
+                </em>
+
+            </h2>
+
+
+            <p id="director-public-message">
+                Loading welcome message…
+            </p>
+
+
+            <blockquote id="director-public-quote">
+
+                In all things, God is first.
+
+            </blockquote>
+
+
+            <strong id="director-public-name">
+                Rev. Fr. Justin Okoro
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCHOOLS — NOW DYNAMIC
+     ========================================================= -->
+
+<section
+    id="schools"
+    class="section schools-section"
+>
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <span class="eyebrow">
+                OUR SCHOOLS
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                Learning communities.
+                <em>
+                    One platform.
+                </em>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Schools, photographs, descriptions
+            and visibility can be managed directly
+            from the Admin Content page.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="public-schools-grid"
+        class="school-grid school-grid-upgraded reveal stagger-grid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     CAMPUS LIFE / ACTIVITIES
+     ========================================================= -->
+
+<section class="section campus-section">
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <span class="eyebrow">
+                CAMPUS LIFE
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                More than a classroom.
+                <em>
+                    A community.
+                </em>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Activities and student-life stories
+            can be updated by Admin without
+            editing the homepage code.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="public-activities-grid"
+        class="campus-grid reveal stagger-grid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     FACILITIES
+     ========================================================= -->
+
+<section class="section facilities-section">
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <span class="eyebrow">
+                FACILITIES & RESOURCES
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                Spaces built for
+                <em>
+                    learning and care.
+                </em>
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="public-facilities-grid"
+        class="facility-grid reveal stagger-grid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     MANAGEMENT
+     ========================================================= -->
+
+<section class="section management-section">
+
+    <div
+        class="section-heading centered reveal"
+    >
+
+        <span class="eyebrow">
+            LEADERSHIP
+        </span>
+
+
+        <h2 class="animated-heading">
+
+            Management
+            <em>
+                team.
+            </em>
+
+        </h2>
+
+
+        <p>
+
+            Management profiles, photographs,
+            positions and information are
+            controlled from Admin Content.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="public-management-grid"
+        class="management-grid reveal stagger-grid"
+    ></div>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY
+     ========================================================= -->
+
+<section class="gallery section">
+
+    <div class="head">
+
+        <div>
+
+            <div class="eyebrow white">
+                LIFE AT HOLY ROSARY
+            </div>
+
+
+            <h2>
+
+                People make
+                <br>
+
+                <em>
+                    the place.
+                </em>
+
+            </h2>
+
+        </div>
+
+
+        <div
+            class="gallery-controls"
+            aria-label="Gallery controls"
+        >
+
+            <button
+                id="prev"
+                type="button"
+                aria-label="Previous gallery slide"
+            >
+                ←
+            </button>
+
+
+            <button
+                id="next"
+                type="button"
+                aria-label="Next gallery slide"
+            >
+                →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="galleryWindow">
+
+        <div
+            id="public-gallery-track"
+            class="track"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ADMISSIONS
+     ========================================================= -->
+
+<section
+    id="admissions"
+    class="section dark-panel reveal"
+>
+
+    <div>
+
+        <span class="eyebrow">
+            ADMISSIONS
+        </span>
+
+
+        <h2 class="animated-heading">
+
+            From application to payment
+            to Registry review.
+
+        </h2>
+
+
+        <p>
+
+            Applicants can submit an application,
+            pay approved fees and track the
+            resulting workflow.
+
+        </p>
+
+    </div>
+
+
+    <a
+        class="btn light magnetic-btn"
+        href="apply.html"
+    >
+        Start application
+    </a>
+
+</section>
+
+
+<!-- =========================================================
+     UPCOMING EVENTS — NOW DYNAMIC
+     ========================================================= -->
+
+<section
+    id="events"
+    class="section events-section"
+>
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <span class="eyebrow">
+                WHAT'S COMING UP
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                Upcoming
+                <em>
+                    events.
+                </em>
+
+            </h2>
+
+        </div>
+
+
+        <p>
+
+            Admissions activities, academic
+            programmes, student events and
+            important institutional dates can
+            be published here from Admin Content.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="public-events-grid"
+        class="events-grid reveal stagger-grid"
+    ></div>
+
+
+    <div class="events-footer reveal">
+
+        <span>
+            Events are published and managed
+            by authorized administrators.
+        </span>
+
+
+        <a href="login.html">
+            Staff / Registry portal →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     NEWS
+     ========================================================= -->
+
+<section
+    id="news"
+    class="section news-section"
+>
+
+    <div class="section-heading reveal">
+
+        <div>
+
+            <span class="eyebrow">
+                UPDATES
+            </span>
+
+
+            <h2 class="animated-heading">
+
+                News and
+                <em>
+                    communication.
+                </em>
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="news-grid reveal stagger-grid">
+
+        <article>
+
+            <span>
+                NOTICE
+            </span>
+
+            <h3>
+                Academic calendar
+            </h3>
+
+            <p>
+                Publish verified calendars
+                and institutional notices here.
+            </p>
+
+            <a href="#news">
+                Read update →
+            </a>
+
+        </article>
+
+
+        <article>
+
+            <span>
+                REGISTRY
+            </span>
+
+            <h3>
+                Result publication
+            </h3>
+
+            <p>
+                Students can verify approved
+                results through the public
+                result checker.
+            </p>
+
+            <a href="#result-checker">
+                Check result →
+            </a>
+
+        </article>
+
+
+        <article>
+
+            <span>
+                ADMISSIONS
+            </span>
+
+            <h3>
+                Application updates
+            </h3>
+
+            <p>
+                Keep applicants informed at
+                every stage of the admissions
+                process.
+            </p>
+
+            <a href="apply.html">
+                Apply →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PUBLIC RESULT CHECKER
+     ========================================================= -->
+
+<section
+    id="result-checker"
+    class="section result-checker-section"
+>
+
+    <div class="result-checker-shell reveal">
+
+        <div class="result-checker-copy">
+
+            <span class="eyebrow">
+                PUBLIC RESULT CHECKER
+            </span>
+
+
+            <h2>
+
+                Check your result
+                <em>
+                    securely.
+                </em>
+
+            </h2>
+
+
+            <p>
+
+                Enter the result PIN and student
+                details to verify a published
+                academic result.
+
+            </p>
+
+        </div>
+
+
+        <form
+            id="public-result-form"
+            class="result-checker-form"
+        >
+
+            <div class="result-form-grid">
+
+                <label>
+
+                    6-digit Result PIN
+
+                    <input
+                        id="result-pin"
+                        inputmode="numeric"
+                        maxlength="6"
+                        pattern="\d{6}"
+                        required
+                        placeholder="000000"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Matriculation Number
+
+                    <input
+                        id="result-matric-no"
+                        required
+                        placeholder="Enter matric number"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Semester
+
+                    <select
+                        id="result-semester"
+                        required
+                    >
+
+                        <option value="">
+                            Select semester
+                        </option>
+
+                        <option>
+                            First Semester
+                        </option>
+
+                        <option>
+                            Second Semester
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+
+                    Examination
+
+                    <input
+                        id="result-examination"
+                        required
+                        placeholder="e.g. Main Examination"
+                    >
+
+                </label>
+
+
+                <label class="full-field">
+
+                    Academic Year
+
+                    <input
+                        id="result-academic-year"
+                        required
+                        placeholder="e.g. 2025/2026"
+                    >
+
+                </label>
+
+            </div>
+
+
+            <button
+                id="check-result-button"
+                class="btn blue full"
+                type="submit"
+            >
+                Check Result →
+            </button>
+
+
+            <p
+                id="result-message"
+                class="result-message"
+                aria-live="polite"
+            ></p>
+
+        </form>
+
+
+        <div
+            id="result-output"
+            class="result-output"
+        ></div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+
+        <b>
+            Holy Rosary Hospital Emekuku
+        </b>
+
+        <p>
+            Hospital · Schools · Students · Staff
+        </p>
+
+    </div>
+
+
+    <div>
+
+        <a href="login.html">
+            Portal
+        </a>
+
+        <a href="apply.html">
+            Admissions
+        </a>
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

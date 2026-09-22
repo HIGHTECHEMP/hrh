@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payments & Fees | Holy Rosary</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+</head>
+<body data-role="student">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="brand-mark">HR</span><span><b>Holy Rosary</b><small>STUDENT PORTAL</small></span></a>
+  <nav class="side-nav">
+    <a href="student-dashboard.html">Overview</a>
+    <a href="student-results.html">Results</a>
+    <a class="active" href="student-payments.html">Payments &amp; fees</a>
+  </nav>
+  <button id="logout" class="btn ghost full">Sign out</button>
+</aside>
+
+<main class="dashboard">
+  <div class="dash-top">
+    <div>
+      <span class="eyebrow">STUDENT PORTAL</span>
+      <h1>Payments &amp; fees</h1>
+      <p id="welcome" class="lead">Loading secure payment centre…</p>
+    </div>
+    <span class="badge">Secure</span>
+  </div>
+
+  <section class="payment-hero dash-card">
+    <div>
+      <span class="eyebrow">HOLY ROSARY PAYMENT CENTRE</span>
+      <h2>Pay your approved charges online</h2>
+      <p class="lead">Your level and official fee are checked by the server. For school fees, choose a semester and pay in full or make a part payment. Your balance continues from payment to payment.</p>
+      <div class="payment-policy-strip">
+        <span>✓ Official charges only</span>
+        <span>✓ Secure Flutterwave checkout</span>
+        <span>✓ Digital receipts</span>
+      </div>
+    </div>
+  </section>
+
+  <p id="payment-message" class="form-message" aria-live="polite"></p>
+
+  <section>
+    <div class="card-title">
+      <div>
+        <span class="eyebrow">AVAILABLE SERVICES</span>
+        <h2>Fees &amp; services</h2>
+      </div>
+    </div>
+    <div id="fee-list" class="fee-grid">
+      <div class="admin-loading">Loading approved fees…</div>
+    </div>
+  </section>
+
+  <section class="dash-card" style="margin-top:22px">
+    <div class="card-title">
+      <div>
+        <span class="eyebrow">PAYMENT HISTORY</span>
+        <h2>Your transactions &amp; receipts</h2>
+      </div>
+      <button id="refresh-payments" class="btn ghost" type="button">Refresh</button>
+    </div>
+    <p class="lead payment-history-intro">Every successful transaction is kept here. Select <b>View receipt</b> to open the receipt inside the portal without leaving this page.</p>
+    <div id="payment-history" class="payment-history">
+      <div class="admin-loading">Loading payment history…</div>
+    </div>
+  </section>
+</main>
+
+<script src="js/portal.js"></script>
+<script src="js/student-payments.js"></script>
+</body>
+</html>
