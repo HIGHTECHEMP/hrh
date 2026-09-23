@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Registry Dashboard | Holy Rosary</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+</head>
+
+<body data-role="registry" data-roles="registry,admin">
+    <aside class="sidebar"><a class="brand" href="index.html"><span class="brand-mark">HR</span><span><b>Holy
+                    Rosary</b><small>REGISTRY PORTAL</small></span></a>
+        <nav class="side-nav"><a class="active" href="registry-dashboard.html">Overview</a><a
+                href="registry-students.html">Students</a><a href="registry-results.html">Results</a><a
+                href="registry-pins.html">Result PINs</a><a href="registry-applications.html">Applications</a></nav>
+        <button id="logout" class="btn ghost full">Sign out</button>
+    </aside>
+    <main class="dashboard">
+        <div class="dash-top">
+            <div><span class="eyebrow">REGISTRY PORTAL</span>
+                <h1>Academic records control centre</h1>
+                <p id="welcome" class="lead">Loading secure workspace…</p>
+            </div><span id="chip" class="badge">Protected</span>
+        </div>
+        <div class="metric-grid">
+            <div class="metric"><span>Students</span><b id="students">—</b></div>
+            <div class="metric"><span>Pending results</span><b id="pending-results">—</b></div>
+            <div class="metric"><span>Applications</span><b id="applications">—</b></div>
+        </div>
+        <div class="dash-grid">
+            <article class="dash-card">
+                <h2>Registry workflow</h2>
+                <ol class="steps">
+                    <li>Keep student levels and records current.</li>
+                    <li>Review lecturer result submissions.</li>
+                    <li>Approve or return results.</li>
+                    <li>Publish approved results.</li>
+                    <li>Manage result PINs.</li>
+                </ol>
+            </article>
+            <article class="dash-card">
+                <h2>Actions</h2><a class="action" href="registry-results.html">Review pending results →</a><a
+                    class="action" href="registry-students.html">Manage student levels →</a><a class="action"
+                    href="registry-pins.html">Manage PINs →</a>
+            </article>
+        </div>
+    <section class="dash-card" style="margin-top:20px"><span class="eyebrow">RESULT PINS</span><h2>PIN fulfilment</h2><p class="lead">Review verified Result Checker PIN payments and issue the one-use PIN. General student fee collection is handled by the Cashier portal.</p><a class="action" href="registry-payments.html">Open PIN payments →</a></section></main>
+    <script src="js/portal.js"></script>
+    <script src="js/registry-dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lecturer Dashboard | Holy Rosary</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+</head>
+<body data-role="lecturer">
+<aside class="sidebar">
+    <a class="brand" href="index.html"><span class="brand-mark">HR</span><span><b>Holy Rosary</b><small>LECTURER PORTAL</small></span></a>
+    <nav class="side-nav">
+        <a class="active" href="lecturer-dashboard.html">Overview</a>
+        <a href="#courses-section">My courses</a>
+        <a href="#results-section">Enter results</a>
+        <a href="#results-section">Submissions</a>
+    </nav>
+    <button id="logout" class="btn ghost full">Sign out</button>
+</aside>
+<main class="dashboard">
+    <div class="dash-top">
+        <div><span class="eyebrow">LECTURER PORTAL</span><h1>Teaching & assessment</h1><p id="welcome" class="lead">Loading secure workspace…</p></div>
+        <span id="chip" class="badge">Protected</span>
+    </div>
+
+    <div class="metric-grid">
+        <div class="metric"><span>Assigned courses</span><b id="course-count">—</b></div>
+        <div class="metric"><span>Students in selected level</span><b id="student-count">—</b></div>
+        <div class="metric"><span>Submitted results</span><b id="submitted-count">—</b></div>
+    </div>
+
+    <section id="courses-section" class="dash-card" style="margin-top:20px">
+        <div class="card-title"><div><span class="eyebrow">TEACHING</span><h2>My assigned courses</h2></div></div>
+        <div id="course-list" class="lecturer-course-grid">Loading courses…</div>
+    </section>
+
+    <section id="results-section" class="dash-card" style="margin-top:20px">
+        <div class="card-title"><div><span class="eyebrow">ASSESSMENT</span><h2>Enter student results</h2></div></div>
+
+        <div class="form-grid lecturer-settings">
+            <label>Course<select id="course-select"><option value="">Select assigned course</option></select></label>
+            <label>Level<select id="level-select">
+                <option value="">Select level</option>
+                <option value="100 Level">100 Level</option>
+                <option value="200 Level">200 Level</option>
+                <option value="300 Level">300 Level</option>
+                <option value="400 Level">400 Level</option>
+                <option value="500 Level">500 Level</option>
+                <option value="ALL">All levels</option>
+            </select></label>
+            <label>Semester<select id="semester"><option value="">Select semester</option><option value="First Semester">First Semester</option><option value="Second Semester">Second Semester</option></select></label>
+            <label>Examination<input id="examination" type="text" placeholder="e.g. Main Examination"></label>
+            <label>Academic Year<input id="academic-year" type="text" inputmode="numeric" pattern="\d{4}/\d{4}" placeholder="e.g. 2026/2027"></label>
+        </div>
+
+        <div id="result-message" class="form-message" aria-live="polite"></div>
+        <div id="students-area" style="margin-top:25px"><div class="lecturer-empty">Select a course and level to load students.</div></div>
+
+        <div class="lecturer-actions" id="lecturer-actions" style="display:none">
+            <button id="save-all" class="btn primary" type="button">Save all drafts</button>
+            <button id="submit-all" class="btn ghost" type="button">Submit all results</button>
+        </div>
+    </section>
+</main>
+<script src="js/portal.js"></script>
+<script src="js/lecturer-dashboard.js"></script>
+</body>
+</html>

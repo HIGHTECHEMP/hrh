@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Admin Content | Holy Rosary</title>
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+</head>
+
+<body data-role="admin">
+
+<aside class="sidebar">
+
+    <a class="brand" href="index.html">
+        <span class="brand-mark">HR</span>
+
+        <span>
+            <b>Holy Rosary</b>
+            <small>ADMIN PORTAL</small>
+        </span>
+    </a>
+
+    <nav class="side-nav">
+        <a href="admin-dashboard.html">Overview</a>
+        <a href="admin-users.html">Users & roles</a>
+        <a class="active" href="admin-content.html">Content</a>
+    </nav>
+
+    <button id="logout" class="btn ghost full">
+        Sign out
+    </button>
+
+</aside>
+
+
+<main class="dashboard">
+
+    <div class="dash-top">
+
+        <div>
+            <span class="eyebrow">ADMIN PORTAL</span>
+
+            <h1>
+                Homepage content studio
+            </h1>
+
+            <p id="welcome" class="lead">
+                Loading secure workspace…
+            </p>
+        </div>
+
+        <span id="chip" class="badge">
+            Protected
+        </span>
+
+    </div>
+
+
+    <p
+        id="content-message"
+        class="form-message content-global-message"
+        aria-live="polite"
+    ></p>
+
+
+    <!-- =====================================================
+         DIRECTOR
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    DIRECTOR'S WELCOME
+                </span>
+
+                <h2>
+                    Director photograph & message
+                </h2>
+
+                <p class="muted">
+                    Edit the Director's welcome text, quotation and photograph.
+                    Changes appear on the public homepage.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            id="director-form"
+            class="director-admin-form"
+        >
+
+            <div
+                class="director-admin-preview"
+                id="director-current-image"
+            ></div>
+
+
+            <div class="form-grid">
+
+                <label>
+                    Name
+
+                    <input
+                        id="director-name"
+                        name="name"
+                        required
+                    >
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        id="director-active"
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show Director section
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Welcome message
+
+                    <textarea
+                        id="director-message"
+                        name="message"
+                        rows="7"
+                        required
+                    ></textarea>
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Closing quote
+
+                    <textarea
+                        id="director-quote"
+                        name="quote"
+                        rows="2"
+                    ></textarea>
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Replace photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+            </div>
+
+
+            <div class="content-form-actions">
+
+                <button
+                    class="btn primary"
+                    type="submit"
+                >
+                    Save Director content
+                </button>
+
+                <button
+                    id="director-remove-image"
+                    class="btn ghost"
+                    type="button"
+                >
+                    Remove photograph
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCHOOLS
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    SCHOOLS
+                </span>
+
+                <h2>
+                    Schools & photographs
+                </h2>
+
+                <p class="muted">
+                    Add schools, edit their information, upload/change
+                    photographs, hide them or delete them.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            id="school-add-form"
+            class="content-add-form content-add-card"
+        >
+
+            <h3>
+                Add a school
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+                    Code
+
+                    <input
+                        name="code"
+                        required
+                        placeholder="e.g. nursing"
+                    >
+                </label>
+
+
+                <label>
+                    Name
+
+                    <input
+                        name="name"
+                        required
+                        placeholder="School name"
+                    >
+                </label>
+
+
+                <label class="wide-field">
+
+                    Description
+
+                    <textarea
+                        name="description"
+                        rows="3"
+                        placeholder="Public school description"
+                    ></textarea>
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add school
+            </button>
+
+        </form>
+
+
+        <div
+            id="schools-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading schools…
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MANAGEMENT
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    LEADERSHIP
+                </span>
+
+                <h2>
+                    Management team
+                </h2>
+
+                <p class="muted">
+                    Replace initials with photographs, edit names/titles,
+                    add new members or delete members.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="content-add-form content-add-card"
+            data-table="management_team"
+        >
+
+            <h3>
+                Add management member
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+                    Name
+
+                    <input
+                        name="name"
+                        required
+                    >
+                </label>
+
+
+                <label>
+                    Position / title
+
+                    <input
+                        name="title"
+                        required
+                    >
+                </label>
+
+
+                <label class="wide-field">
+
+                    Bio / information
+
+                    <textarea
+                        name="bio"
+                        rows="3"
+                    ></textarea>
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Display order
+
+                    <input
+                        name="sort_order"
+                        type="number"
+                        value="0"
+                    >
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add management member
+            </button>
+
+        </form>
+
+
+        <div
+            id="management_team-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading management…
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GALLERY
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    GALLERY
+                </span>
+
+                <h2>
+                    Gallery images
+                </h2>
+
+                <p class="muted">
+                    Add photos with titles and information, replace existing
+                    photos, remove photos, reorder items or delete gallery entries.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="content-add-form content-add-card"
+            data-table="gallery_items"
+        >
+
+            <h3>
+                Add gallery image
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+
+                    Title
+
+                    <input
+                        name="title"
+                        required
+                        placeholder="e.g. Student Life"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Display order
+
+                    <input
+                        name="sort_order"
+                        type="number"
+                        value="0"
+                    >
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Information
+
+                    <textarea
+                        name="description"
+                        rows="3"
+                    ></textarea>
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add gallery image
+            </button>
+
+        </form>
+
+
+        <div
+            id="gallery_items-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading gallery…
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ACTIVITIES
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    CAMPUS ACTIVITIES
+                </span>
+
+                <h2>
+                    Activities & student life
+                </h2>
+
+                <p class="muted">
+                    Add activity photographs, edit activity information,
+                    hide activities or delete them.
+                    These power the public Campus Life section.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="content-add-form content-add-card"
+            data-table="activity_items"
+        >
+
+            <h3>
+                Add activity
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+
+                    Title
+
+                    <input
+                        name="title"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Category
+
+                    <input
+                        name="category"
+                        value="Campus Life"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Display order
+
+                    <input
+                        name="sort_order"
+                        type="number"
+                        value="0"
+                    >
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Information
+
+                    <textarea
+                        name="description"
+                        rows="3"
+                    ></textarea>
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add activity
+            </button>
+
+        </form>
+
+
+        <div
+            id="activity_items-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading activities…
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         EVENTS
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    UPCOMING EVENTS
+                </span>
+
+                <h2>
+                    Upcoming events
+                </h2>
+
+                <p class="muted">
+                    Create, edit, photograph, reorder or delete events
+                    shown on the homepage.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="content-add-form content-add-card"
+            data-table="upcoming_events"
+        >
+
+            <h3>
+                Add upcoming event
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+
+                    Event title
+
+                    <input
+                        name="title"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Category
+
+                    <input
+                        name="category"
+                        value="EVENT"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Date & time
+
+                    <input
+                        name="event_date"
+                        type="datetime-local"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Location
+
+                    <input
+                        name="location"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Display order
+
+                    <input
+                        name="sort_order"
+                        type="number"
+                        value="0"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Information
+
+                    <textarea
+                        name="description"
+                        rows="3"
+                    ></textarea>
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add event
+            </button>
+
+        </form>
+
+
+        <div
+            id="upcoming_events-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading events…
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FACILITIES
+         ===================================================== -->
+
+    <section class="dash-card content-manager-section">
+
+        <div class="content-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    FACILITIES & RESOURCES
+                </span>
+
+                <h2>
+                    Facilities
+                </h2>
+
+                <p class="muted">
+                    Manage the facility/resource cards and optionally
+                    give each one a photograph.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="content-add-form content-add-card"
+            data-table="facility_items"
+        >
+
+            <h3>
+                Add facility
+            </h3>
+
+
+            <div class="form-grid compact-grid">
+
+                <label>
+
+                    Title
+
+                    <input
+                        name="title"
+                        required
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Icon
+
+                    <input
+                        name="icon"
+                        value="✚"
+                        maxlength="4"
+                    >
+
+                </label>
+
+
+                <label>
+
+                    Display order
+
+                    <input
+                        name="sort_order"
+                        type="number"
+                        value="0"
+                    >
+
+                </label>
+
+
+                <label class="wide-field">
+
+                    Information
+
+                    <textarea
+                        name="description"
+                        rows="3"
+                    ></textarea>
+
+                </label>
+
+
+                <label>
+
+                    Photograph
+
+                    <input
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                    >
+
+                </label>
+
+
+                <label class="check-label">
+
+                    <input
+                        name="active"
+                        type="checkbox"
+                        checked
+                    >
+
+                    Show on public site
+
+                </label>
+
+            </div>
+
+
+            <button
+                class="btn primary"
+                type="submit"
+            >
+                Add facility
+            </button>
+
+        </form>
+
+
+        <div
+            id="facility_items-list"
+            class="content-admin-list"
+        >
+
+            <div class="admin-loading">
+                Loading facilities…
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="js/portal.js"></script>
+<script src="js/admin-content.js"></script>
+
+</body>
+</html>

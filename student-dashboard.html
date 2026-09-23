@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Student Dashboard | Holy Rosary</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+</head>
+
+<body data-role="student">
+    <aside class="sidebar">
+        <a class="brand" href="index.html"><span class="brand-mark">HR</span><span><b>Holy Rosary</b><small>STUDENT
+                    PORTAL</small></span></a>
+        <nav class="side-nav"><a class="active" href="student-dashboard.html">Overview</a><a
+                href="student-results.html">Results</a><a href="#notices">Notices</a><a href="#profile">Profile</a>
+        </nav>
+        <button id="logout" class="btn ghost full">Sign out</button>
+    </aside>
+    <main class="dashboard">
+        <div class="dash-top">
+            <div><span class="eyebrow">STUDENT PORTAL</span>
+                <h1>Your academic workspace</h1>
+                <p id="welcome" class="lead">Loading secure workspace…</p>
+            </div><span id="chip" class="badge">Active</span>
+        </div>
+        <section id="profile" class="student-profile-card">
+            <div class="student-avatar"><span id="student-initial">S</span></div>
+            <div class="student-profile-main"><span class="eyebrow">REGISTERED STUDENT</span>
+                <h2 id="student-name">Loading…</h2>
+                <p id="student-school">Loading school…</p>
+            </div>
+            <div class="student-exam-number"><span>Registered Exam Number</span><strong
+                    id="student-exam-number">—</strong></div>
+        </section>
+        <div class="student-academic-strip">
+            <div><span>Current Level</span><strong id="student-level">—</strong></div>
+            <div><span>Academic Journey</span><strong id="progress-count">—</strong></div>
+        </div>
+        <div class="metric-grid">
+            <div class="metric"><span>Student status</span><b id="student-status">Active</b></div>
+            <div class="metric"><span>Latest GPA</span><b id="latest-gpa">—</b></div>
+            <div class="metric"><span>Application</span><b id="application-status">—</b></div>
+        </div>
+        <section class="dash-card" style="margin-top:20px" id="carry-forward-balance-card">
+            <div class="card-title">
+                <div><span class="eyebrow">FINANCIAL POSITION</span><h2>Carried-forward outstanding</h2></div>
+                <a class="badge" href="student-payments.html">Pay balance</a>
+            </div>
+            <div id="carry-forward-balance" class="metric-grid" style="margin-top:16px">
+                <div class="metric"><span>Previous school fees</span><b>Loading…</b></div>
+                <div class="metric"><span>Previous examination fees</span><b>Loading…</b></div>
+                <div class="metric"><span>Total carried forward</span><b>Loading…</b></div>
+            </div>
+            <p id="carry-forward-note" class="lead" style="margin-top:12px">Previous-level unpaid balances remain payable after promotion.</p>
+        </section>
+        <section class="dash-card" style="margin-top:20px">
+            <div class="card-title">
+                <div><span class="eyebrow">ACADEMIC RECORD</span>
+                    <h2>Recent results</h2>
+                </div><a class="badge" href="student-results.html">View all</a>
+            </div>
+            <div id="recent-results" style="margin-top:20px">Loading results…</div>
+        </section>
+        <section class="dash-card student-growth-card" style="margin-top:20px">
+            <div class="card-title">
+                <div><span class="eyebrow">PROGRESSION</span>
+                    <h2>Your academic growth</h2>
+                </div>
+            </div>
+            <div id="level-history" class="level-history">
+                <p class="muted">Loading progression…</p>
+            </div>
+        </section>
+        <div class="dash-grid" style="margin-top:20px">
+            <article class="dash-card"><span class="eyebrow">QUICK ACTIONS</span>
+                <h2>Student services</h2><a class="action" href="student-results.html">View published results →</a><a class="action" href="student-payments.html">Payments & fees →</a><a
+                    class="action" href="#profile">View profile →</a>
+            </article>
+            <article id="notices" class="dash-card"><span class="eyebrow">NOTICES</span>
+                <h2>Official notices</h2>
+                <div id="student-notices">
+                    <p class="muted">No notices loaded yet.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+    <script src="js/portal.js"></script>
+    <script src="js/student-dashboard.js"></script>
+</body>
+
+</html>

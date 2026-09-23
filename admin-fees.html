@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fees & Charges | Holy Rosary</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+</head>
+<body data-role="admin">
+<aside class="sidebar">
+  <a class="brand" href="index.html"><span class="brand-mark">HR</span><span><b>Holy Rosary</b><small>ADMIN PORTAL</small></span></a>
+  <nav class="side-nav">
+    <a href="admin-dashboard.html">Overview</a><a href="admin-users.html">Users &amp; roles</a><a href="admin-content.html">Content</a>
+    <a href="registry-students.html">Student records</a><a href="registry-results.html">Results</a><a href="registry-applications.html">Applications</a>
+    <a href="registry-pins.html">Result PINs</a><a href="registry-payments.html">Payments</a><a class="active" href="admin-fees.html">Fees &amp; charges</a>
+    <a href="cashier-dashboard.html">Cashier</a>
+  </nav>
+  <button id="logout" class="btn ghost full">Sign out</button>
+</aside>
+
+<main class="dashboard">
+  <div class="dash-top">
+    <div><span class="eyebrow">ADMIN PORTAL</span><h1>Fees &amp; charges</h1><p id="welcome" class="lead">Configure the official charges students can pay.</p></div>
+    <span class="badge">Protected</span>
+  </div>
+
+  <section class="dash-card admin-section-card">
+    <div class="card-title">
+      <div><span class="eyebrow">FEE CATALOGUE</span><h2>Configure an official charge</h2></div>
+    </div>
+    <p class="lead">School Fees are entered as the <b>annual amount</b> for a level. The student portal automatically splits that amount between First and Second Semester. Examination charges are configured separately for each exam type.</p>
+
+    <div class="form-grid">
+      <label>Code<input id="fee-code" placeholder="e.g. school_fees_100"></label>
+      <label>Name<input id="fee-name" placeholder="e.g. School Fees — 100 Level"></label>
+      <label>Charge type
+        <select id="fee-category">
+          <option value="school_fees">School Fees</option>
+          <option value="examination">Examination Fee</option>
+          <option value="result_pin">Result PIN</option>
+          <option value="application">Application Fee</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+      <label>School
+        <select id="fee-school"><option value="">All schools</option></select>
+      </label>
+      <label>Level
+        <select id="fee-level">
+          <option value="">All levels</option><option>100 Level</option><option>200 Level</option><option>300 Level</option><option>400 Level</option><option>500 Level</option>
+        </select>
+      </label>
+      <label id="exam-type-wrap">Exam type
+        <select id="fee-exam-type">
+          <option value="">Select exam type</option>
+          <option>First Semester</option>
+          <option>Second Semester</option>
+          <option>Hospital Finals</option>
+          <option>Council</option>
+          <option>Resit</option>
+          <option>Suitability</option>
+        </select>
+      </label>
+      <label>Official amount (NGN)<input id="fee-amount" type="number" min="0" step="0.01" placeholder="350000"></label>
+      <label>Description<input id="fee-description" placeholder="What this charge covers"></label>
+      <label class="checkbox-row"><input id="fee-active" type="checkbox"> Available for student payment</label>
+    </div>
+
+    <div class="admin-form-actions">
+      <button id="save-fee" class="btn primary" type="button">Save fee</button>
+      <button id="cancel-fee" class="btn ghost" type="button" style="display:none">Cancel edit</button>
+    </div>
+    <p id="fee-message" class="form-message" aria-live="polite"></p>
+  </section>
+
+  <section class="dash-card" style="margin-top:20px">
+    <div class="card-title">
+      <div><span class="eyebrow">CURRENT CHARGES</span><h2>Fee catalogue</h2></div>
+      <button id="refresh-fees" class="btn ghost" type="button">Refresh</button>
+    </div>
+    <div id="fee-admin-list" class="fee-admin-list"><div class="admin-loading">Loading fees…</div></div>
+  </section>
+</main>
+<script src="js/portal.js"></script>
+<script src="js/admin-fees.js"></script>
+</body>
+</html>
